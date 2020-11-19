@@ -1,0 +1,5 @@
+Running surfaceFeatureExtract on /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe4
+Running blockMesh on /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe4
+Running decomposePar on /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe4
+Running snappyHexMesh on /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe4
+Running reconstructParMesh on /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe4

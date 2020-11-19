@@ -1,0 +1,244 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      snappyHexMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+castellatedMesh true;
+snap            true;
+addLayers       true;
+
+
+// Geometry. Definition of all surfaces. All surfaces are of class
+// searchableSurface.
+// Surfaces are used -> like searchableBox use searchablepipe to perform function in the pipe surface
+// multiple stl surfaces can also be defined
+// - to specify refinement for background mesh and surface cell intersection
+// - to specify refinement for any mesh cell inside/outside/near surface
+// - to 'snap' the mesh boundary to the surface
+geometry
+{
+    pipe.stl
+    {
+        type triSurfaceMesh;
+        name cylinder; //cylinder is used to refer to all pipe.stl's surfaces
+	regions
+	{
+		suplat {name suplat;} //these are the regions inside the stl file itself, can be helpful to define multiple i/o s.
+	//	inlet {name inlet;}
+	//	outlet {name outlet;}
+	}
+    }
+
+};
+
+
+castellatedMeshControls
+{
+
+    // Refinement parameters
+    // ~~~~~~~~~~~~~~~~~~~~~
+
+    maxLocalCells 150000; //useful for processing normally or weighted way before refinement. high is better but slow
+
+    maxGlobalCells 2000000; //absolute maximum number of cells
+   
+    minRefinementCells 1; //surface refinement will stop if <= minumumRefinementCells. minor refinements will be neglected
+
+    maxLoadUnbalance 0.1; //allows imbalance in refinement ncells/nprocs. 0 is perfectly balanced
+
+    nCellsBetweenLevels 3; //buffer layer between different refinement levels
+
+
+
+    // Explicit feature edge refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    //refinement for feature and mesh intersection
+    
+    features
+    (
+      {
+          file "pipe.eMesh"; //all features inside pipe.stl not the boundaries tho
+          level 6;
+      }
+    );
+
+
+    // Surface based refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~~~
+
+    // (min max) every cell mesh interaction gets min and where  angle > resolveFeatureAngle get refined up to the maximum level
+
+    refinementSurfaces
+    {
+        cylinder
+        {
+            level (0 0); //(min max) for entire surface called cylinder
+	    
+	    regions
+	    {
+		suplat {level (1 1);} //refinement for region inside the surface
+	    }
+
+            // Optional specification of patch type (default is wall). No
+            // constraint types (cyclic, symmetry) etc. are allowed.
+            //patchInfo //refinement for diffenent patches
+            //{
+            //    type wall;
+            //    inGroups (motorBikeGroup); 
+            //}
+        }
+    }
+
+    resolveFeatureAngle 95;
+
+
+    // Region-wise refinement
+    // ~~~~~~~~~~~~~~~~~~~~~~
+
+    // Specifies refinement level for cells in relation to a surface. One of
+    // three modes
+    // - distance. 'levels' specifies per distance to the surface the
+    //   wanted refinement level. The distances need to be specified in
+    //   descending order.
+    // - inside. 'levels' is only one entry and only the level is used. All
+    //   cells inside the surface get refined up to the level. The surface
+    //   needs to be closed for this to be possible.
+    // - outside. Same but cells outside.
+
+    refinementRegions
+    {
+    }
+
+    locationInMesh (0 0 3);
+
+    allowFreeStandingZoneFaces true; //allow face zones for  boundary faces of refinement surfaces
+}
+
+
+snapControls
+{
+    nSmoothPatch 10; //iterations to find smooth patch-surface snap
+
+    tolerance 5.0; //points within this distance will be attracted to surface feature
+    
+    nSolveIter 10; //iterations for distant point snapping
+
+    nRelaxIter 5; //max iterations before giving up
+
+    // Feature snapping
+
+        nFeatureSnapIter 10; //feature snap iters. Comment to disable
+
+        implicitFeatureSnap false; //snapping by sampling surrounding meshes
+     
+        explicitFeatureSnap true; //uses features from castellated mesh 
+
+        multiRegionFeatureSnap false; //for multi surface(explicit only)
+}
+
+
+addLayersControls
+{
+    relativeSizes true; //thickness of layers relative to undistorted size outside layer? (T/F)
+
+    layers //define all patches that are necessaru for layering
+    {
+        suplat
+        {
+            nSurfaceLayers 3;
+        }
+    }
+
+    expansionRatio 1; //>1 layers grow in thickness
+
+    finalLayerThickness 0.3; //thickness of final layer from wall = % of the undistorted mesh 
+
+    minThickness 0.3; //thickness of first layer
+
+    nGrow 0; //# of no grow layers
+
+    // Advanced settings
+
+    featureAngle 60; //no extrude angle 
+
+    slipFeatureAngle 30; //non patched side mesh slip when extrusion dirn angle > slipangle
+
+    nRelaxIter 3; //max snap relaxation iterations
+
+    // Number of smoothing iterations of surface normals
+    nSmoothSurfaceNormals 1;
+
+    // Number of smoothing iterations of interior mesh movement direction
+    nSmoothNormals 3;
+
+    // Smooth layer thickness over surface patches
+    nSmoothThickness 10;
+
+    // Stop layer growth on highly warped cells
+    maxFaceThicknessRatio 0.5;
+
+    // Reduce layer growth where ratio thickness to medial
+    // distance is large
+    maxThicknessToMedialRatio 0.3;
+
+    // Angle used to pick up medial axis points
+    // Note: changed(corrected) w.r.t 17x! 90 degrees corresponds to 130 in 17x.
+    minMedianAxisAngle 90;
+
+
+    // Create buffer region for new layer terminations
+    nBufferCellsNoExtrude 0;
+
+
+    // Overall max number of layer addition iterations. The mesher will exit
+    // if it reaches this number of iterations; possibly with an illegal
+    // mesh.
+    nLayerIter 50;
+}
+
+
+
+// Generic mesh quality settings. At any undoable phase these determine
+// where to undo.
+meshQualityControls
+{
+    #include "meshQualityDict"
+
+
+    // Advanced
+
+    //- Number of error distribution iterations
+    nSmoothScale 4;
+    //- amount to scale back displacement at error points
+    errorReduction 0.75;
+}
+
+
+// Advanced
+
+// Write flags
+writeFlags
+(
+    scalarLevels
+    layerSets
+    layerFields     // write volScalarField for layer coverage
+);
+
+
+// Merge tolerance. Is fraction of overall bounding box of initial mesh.
+// Note: the write tolerance needs to be higher than this.
+mergeTolerance 1e-6;
+
+
+// ************************************************************************* //

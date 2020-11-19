@@ -1,0 +1,54 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _f3950763fe-20191219 OPENFOAM=1912
+Arch   : "LSB;label=32;scalar=64"
+Exec   : reconstructParMesh
+Date   : Aug 14 2020
+Time   : 10:31:16
+Host   : cnode3.local
+PID    : 9355
+I/O    : uncollated
+Case   : /home/mech432/scr0/solved/snappyGridConvergence/laminarSnappy
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+This is an experimental tool which tries to merge individual processor
+meshes back into one master mesh. Use it if the original master mesh has
+been deleted or if the processor meshes have been modified (topology change).
+This tool will write the resulting mesh to a new time step and construct
+xxxxProcAddressing files in the processor meshes so reconstructPar can be
+used to regenerate the fields on the master mesh.
+
+Not well tested & use at your own risk!
+
+Merge tolerance : 1e-07
+Write tolerance : 1e-07
+Doing geometric matching on correct procBoundaries only.
+This assumes a correct decomposition.
+Found 12 processor directories
+
+Reading database "laminarSnappy/processor0"
+Reading database "laminarSnappy/processor1"
+Reading database "laminarSnappy/processor2"
+Reading database "laminarSnappy/processor3"
+Reading database "laminarSnappy/processor4"
+Reading database "laminarSnappy/processor5"
+Reading database "laminarSnappy/processor6"
+Reading database "laminarSnappy/processor7"
+Reading database "laminarSnappy/processor8"
+Reading database "laminarSnappy/processor9"
+Reading database "laminarSnappy/processor10"
+Reading database "laminarSnappy/processor11"
+
+End
+

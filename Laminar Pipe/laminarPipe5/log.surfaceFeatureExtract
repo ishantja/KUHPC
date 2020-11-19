@@ -1,0 +1,86 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _f3950763fe-20191219 OPENFOAM=1912
+Arch   : "LSB;label=32;scalar=64"
+Exec   : surfaceFeatureExtract
+Date   : Aug 16 2020
+Time   : 00:54:34
+Host   : cnode20.local
+PID    : 2442
+I/O    : uncollated
+Case   : /home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+
+Note: Feature line extraction only valid on closed manifold surfaces
+
+Reading surfaceFeatureExtractDict
+
+Surfaces     : circularPipe.stl
+Output       : circularPipe
+Load options : offset
+Write options: writeObj=yes writeVTK=off
+
+Statistics:
+Triangles    : 60 in 1 region(s)
+Vertices     : 32
+Bounding Box : (0 -0.5 -0.4999941) (3 0.5 0.4999941)
+
+Constructing feature set from included angle 150
+Selecting edges based purely on geometric tests: no
+Removing all non-manifold edges (edges with > 2 connected faces) unless they cross multiple regions
+
+Initial Feature set:
+    points : 0
+    edges  : 32
+    of which
+        region edges   : 0
+        external edges : 32
+        internal edges : 0
+
+Final Feature set:
+    points : 32
+    of which
+        convex             : 0
+        concave            : 0
+        mixed              : 0
+        non-feature        : 32
+    edges  : 32
+    of which
+        external edges     : 32
+        internal edges     : 0
+        flat edges         : 0
+        open edges         : 0
+        multiply connected : 0
+
+Writing extendedFeatureEdgeMesh to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe.extendedFeatureEdgeMesh"
+
+Writing extendedEdgeMesh components to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe"
+Writing 0 convex feature points to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_convexFeaturePts.obj"
+Writing 0 concave feature points to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_concaveFeaturePts.obj"
+Writing 0 mixed feature points to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_mixedFeaturePts.obj"
+Writing 0 mixed feature point structure to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_mixedFeaturePtsStructure.obj"
+Writing 32 external edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_externalEdges.obj"
+Writing 0 internal edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_internalEdges.obj"
+Writing 0 flat edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_flatEdges.obj"
+Writing 0 open edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_openEdges.obj"
+Writing 0 multiple edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_multipleEdges.obj"
+Writing 0 region edges to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_regionEdges.obj"
+Writing 32 edge directions to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/extendedFeatureEdgeMesh/circularPipe_edgeDirections.obj"
+
+Writing featureEdgeMesh to "/home/mech432/scr0/solved/snappyGridConvergence/laminarPipe5/constant/triSurface/circularPipe.eMesh"
+ExecutionTime = 0.02 s  ClockTime = 0 s
+
+End
+

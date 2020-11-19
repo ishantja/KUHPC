@@ -1,0 +1,3 @@
+Running decomposePar on /home/mech432/scr0/solved/laminarPipe
+Running simpleFoam (12 processes) on /home/mech432/scr0/solved/laminarPipe 
+Running reconstructPar on /home/mech432/scr0/solved/laminarPipe
