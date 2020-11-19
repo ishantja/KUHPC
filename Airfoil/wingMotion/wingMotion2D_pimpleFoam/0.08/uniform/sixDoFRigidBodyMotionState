@@ -1,0 +1,31 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "0.08/uniform";
+    object      sixDoFRigidBodyMotionState;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+centreOfRotation ( 0.25 0.01285370449 0.125 );
+
+orientation     ( 0.9879046354 0.155062669 0 -0.155062669 0.9879046354 0 0 0 1 );
+
+velocity        ( 0 0.1815447084 0 );
+
+acceleration    ( 0.5605719602 3.364927886 3.570886951e-16 );
+
+angularMomentum ( 0 0 -2.594094821 );
+
+torque          ( 2.135404978e-15 -1.530146432e-15 13.92904064 );
+
+
+// ************************************************************************* //

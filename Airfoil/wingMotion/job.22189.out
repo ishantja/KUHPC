@@ -1,0 +1,11 @@
+Running blockMesh on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion_snappyHexMesh
+Running snappyHexMesh on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion_snappyHexMesh
+Running extrudeMesh on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_simpleFoam
+Running createPatch on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_simpleFoam
+Restore 0/ from 0.orig/
+Running simpleFoam on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_simpleFoam
+Restore 0/ from 0.orig/
+Running mapFields on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_pimpleFoam
+Running decomposePar on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_pimpleFoam
+Running pimpleFoam (4 processes) on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_pimpleFoam 
+Running reconstructPar on /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_pimpleFoam

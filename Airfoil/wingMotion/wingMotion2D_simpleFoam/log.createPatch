@@ -1,0 +1,55 @@
+/*---------------------------------------------------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v1912                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+Build  : _f3950763fe-20191219 OPENFOAM=1912
+Arch   : "LSB;label=32;scalar=64"
+Exec   : createPatch -overwrite
+Date   : Nov 13 2020
+Time   : 20:14:21
+Host   : cnode20
+PID    : 6244
+I/O    : uncollated
+Case   : /home/mech432/scr0/solved/finalReport/wingMotion/wingMotion2D_simpleFoam
+nProcs : 1
+trapFpe: Floating point exception trapping enabled (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create polyMesh for time = 0
+
+Reading "system/createPatchDict"
+
+Adding new patch front as patch 6 from 
+{
+    type            empty;
+}
+
+Adding new patch back as patch 7 from 
+{
+    type            empty;
+}
+
+
+Moving faces from patch symFront to patch 6
+Moving faces from patch symBack to patch 7
+
+Doing topology modification to order faces.
+
+Not synchronising points.
+
+Removing patches with no faces in them.
+
+Removing zero-sized patch symFront type symmetryPlane at position 3
+Removing zero-sized patch symBack type symmetryPlane at position 4
+Removing patches.
+Writing repatched mesh to 0
+
+End
+
